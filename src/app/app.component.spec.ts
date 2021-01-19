@@ -1,5 +1,10 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import {RouterTestingModule} from '@angular/router/testing';
+import { By } from '@angular/platform-browser';
+import {  RouterLinkWithHref, RouterOutlet } from '@angular/router';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -7,6 +12,10 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      imports:[
+        RouterTestingModule.withRoutes([])
+      ],
+      schemas:[NO_ERRORS_SCHEMA]
     }).compileComponents();
   }));
 
@@ -16,16 +25,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'adminPro'`, () => {
+ 
+
+  
+
+  it('debe dtener un router-outlet',()=>{
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('adminPro');
+    const debugElement = fixture.debugElement.query(By.directive(RouterOutlet))
+    // const app = fixture.componentInstance;
+    expect(debugElement).not.toBeNull();
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('adminPro app is running!');
-  });
+  
 });
